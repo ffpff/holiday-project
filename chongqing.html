@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重庆三日游 | 深圳出发精品旅行</title>
+    <!-- 引入html2canvas库用于页面截图 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        .travel-info {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .travel-route {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .day-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .day-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .day-header h2 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .attraction {
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .attraction:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .attraction h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .attraction-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-icon {
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .tips {
+            background: linear-gradient(45deg, #ffeaa7, #fdcb6e);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .tips h3 {
+            color: #e17055;
+            margin-bottom: 15px;
+        }
+
+        .transportation {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .transportation h3 {
+            margin-bottom: 15px;
+        }
+
+        .route-step {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .weather {
+            background: linear-gradient(45deg, #55efc4, #00b894);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .attraction-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏔️ 重庆三日游精品行程</h1>
+            <p>深圳出发，探索山城魅力 | 2025年6月1日-3日</p>
+        </div>
+
+        <div class="travel-info">
+            <div class="transportation">
+                <h3>🚄 交通路线规划</h3>
+                <div class="route-step">
+                    <strong>去程推荐：</strong>高铁G2942（深圳北→重庆西）<br>
+                    深圳北站 → 地铁4号线 → 市民中心 → 搭乘G2942次高铁 → 重庆西站 → 轻轨5号线到石桥铺 → 转1号线到大坪 → 转2号线到曾家岩
+                </div>
+                <div class="route-step">
+                    <strong>备选方案：</strong>直达火车Z586（深圳东→重庆北）<br>
+                    深圳东站 → Z586次火车 → 重庆北站 → 轻轨10号线到曾家岩
+                </div>
+            </div>
+
+            <div class="weather">
+                <h3>🌤️ 6月重庆天气预报</h3>
+                <p><strong>6月1日：</strong>小雨 22°C-26°C | <strong>6月2日：</strong>小雨 22°C-26°C</p>
+                <p>建议携带雨具和轻薄外套，小雨天气适合室内景点游览</p>
+            </div>
+        </div>
+
+        <div class="day-section">
+            <div class="day-header">
+                <h2>第一天 (6月1日) - 市区经典景点</h2>
+                <p>抵达重庆，游览解放碑商圈与洪崖洞</p>
+            </div>
+
+            <div class="attraction">
+                <h3>🏛️ 人民解放纪念碑</h3>
+                <div class="attraction-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <span><a href="javascript:void(0)" onclick="openNavigation('106.577005', '29.558009', '人民解放纪念碑')" style="color: #667eea; text-decoration: underline; cursor: pointer;">民族路177号 📍导航</a></span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <span>24小时开放</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <span>免费</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⭐</div>
+                        <span>评分：3.7/5</span>
+                    </div>
+                </div>
+                <p><strong>游览建议：</strong>重庆的地标性建筑，是抗战胜利的象征。周围是繁华的解放碑步行街，可以购物、品尝重庆小吃。建议游览时间：1-2小时。</p>
+            </div>
+
+            <div class="attraction">
+                <h3>🏮 洪崖洞民俗风貌区</h3>
+                <div class="attraction-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <span><a href="javascript:void(0)" onclick="openNavigation('106.579031', '29.562201', '洪崖洞民俗风貌区')" style="color: #667eea; text-decoration: underline; cursor: pointer;">嘉陵江滨江路88号 📍导航</a></span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <span>24小时开放</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <span>门票：15元</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⭐</div>
+                        <span>评分：4.8/5 (AAAA级)</span>
+                    </div>
+                </div>
+                <p><strong>游览建议：</strong>千与千寻现实版建筑，晚上灯光璀璨，是重庆夜景的经典代表。建议下午游览，晚上观赏夜景。可在此品尝重庆火锅和小吃。</p>
+            </div>
+
+            <div class="attraction">
+                <h3>🌉 重庆长江索道</h3>
+                <div class="attraction-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <span><a href="javascript:void(0)" onclick="openNavigation('106.586634', '29.556249', '重庆长江索道')" style="color: #667eea; text-decoration: underline; cursor: pointer;">新华路151号 📍导航</a></span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <span>8:00-22:00</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <span>门票：30元</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⭐</div>
+                        <span>评分：4.4/5 (AAAA级)</span>
+                    </div>
+                </div>
+                <p><strong>游览建议：</strong>空中观赏两江交汇和重庆全景的绝佳方式。建议傍晚乘坐，可以看到日落和华灯初上的美景。单程约5分钟。</p>
+            </div>
+        </div>
+
+        <div class="day-section">
+            <div class="day-header">
+                <h2>第二天 (6月2日) - 古镇与网红景点</h2>
+                <p>探访千年古镇，体验轻轨穿楼奇观</p>
+            </div>
+
+            <div class="attraction">
+                <h3>🏘️ 磁器口古镇</h3>
+                <div class="attraction-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <span><a href="javascript:void(0)" onclick="openNavigation('106.449705', '29.581184', '磁器口古镇')" style="color: #667eea; text-decoration: underline; cursor: pointer;">磁南街1号 📍导航</a></span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <span>24小时开放</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <span>免费</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⭐</div>
+                        <span>评分：4.8/5</span>
+                    </div>
+                </div>
+                <p><strong>游览建议：</strong>千年古镇，保存完好的巴渝传统建筑和文化。可品尝麻花、豆腐脑等特色小吃。建议上午游览，避开人流高峰。游览时间：2-3小时。</p>
+            </div>
+
+            <div class="attraction">
+                <h3>🚄 李子坝轻轨站</h3>
+                <div class="attraction-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <span><a href="javascript:void(0)" onclick="openNavigation('106.537660', '29.552892', '李子坝轻轨站')" style="color: #667eea; text-decoration: underline; cursor: pointer;">李子坝正街62号 📍导航</a></span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <span>地铁运营时间</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <span>地铁票价</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📸</div>
+                        <span>网红打卡地</span>
+                    </div>
+                </div>
+                <p><strong>游览建议：</strong>世界唯一的轻轨穿楼景观，2号线直接穿过19层居民楼。在观景平台可拍摄轻轨穿楼的震撼瞬间。还可参观李子坝抗战遗址公园。</p>
+            </div>
+
+            <div class="attraction">
+                <h3>🌃 南山一棵树观景台</h3>
+                <div class="attraction-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <span><a href="javascript:void(0)" onclick="openNavigation('106.583133', '29.517754', '南山一棵树观景台')" style="color: #667eea; text-decoration: underline; cursor: pointer;">南山风景区内 📍导航</a></span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <span>9:00-22:30</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <span>门票约30元</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🌃</div>
+                        <span>最佳夜景观赏地</span>
+                    </div>
+                </div>
+                <p><strong>游览建议：</strong>重庆最佳夜景观赏点，可俯瞰整个重庆主城区夜景。建议傍晚前往，观赏日落到夜景的变化过程。是重庆旅游必去景点之一。</p>
+            </div>
+        </div>
+
+        <div class="day-section">
+            <div class="day-header">
+                <h2>第三天 (6月3日) - 深度体验与返程</h2>
+                <p>品味重庆美食，体验巴渝文化</p>
+            </div>
+
+            <div class="attraction">
+                <h3>🍲 重庆火锅体验</h3>
+                <div class="attraction-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <span>解放碑/观音桥商圈</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <span>11:00-22:00</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <span>人均80-150元</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🌶️</div>
+                        <span>正宗巴渝味道</span>
+                    </div>
+                </div>
+                <p><strong>推荐店铺：</strong>老火锅、小天鹅火锅、秦妈火锅等知名品牌。体验九宫格火锅的独特魅力，品尝毛肚、鸭肠、黄喉等经典菜品。</p>
+            </div>
+
+            <div class="attraction">
+                <h3>🛍️ 重庆特产采购</h3>
+                <div class="attraction-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <span>解放碑步行街</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🛒</div>
+                        <span>特产集中地</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🎁</div>
+                        <span>伴手礼首选</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💝</div>
+                        <span>包装精美</span>
+                    </div>
+                </div>
+                <p><strong>推荐特产：</strong>重庆火锅底料、磁器口麻花、怡颗莲花白、重庆小面调料包、牛肉干、泡椒凤爪等。建议在正规商超购买，保证品质。</p>
+            </div>
+
+            <div class="transportation">
+                <h3>🚄 返程交通</h3>
+                <div class="route-step">
+                    <strong>建议返程路线：</strong><br>
+                    重庆西站/重庆北站 → 高铁/火车 → 深圳北站/深圳东站<br>
+                    提前2小时到达车站，预留充足时间办理安检和候车
+                </div>
+            </div>
+        </div>
+
+        <div class="tips">
+            <h3>🎯 旅行贴士</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>交通：</strong>重庆地铁四通八达，建议购买重庆通卡或使用手机支付</li>
+                <li><strong>美食：</strong>重庆菜偏辣，不能吃辣的朋友要提前说明</li>
+                <li><strong>穿着：</strong>6月重庆较热，建议穿轻便透气的衣物，携带防晒用品</li>
+                <li><strong>住宿：</strong>建议选择解放碑、观音桥附近，交通便利，夜生活丰富</li>
+                <li><strong>安全：</strong>重庆地形复杂，注意脚下安全，避免在陡坡处拍照</li>
+                <li><strong>购物：</strong>重庆特产可在正规商超购买，价格透明，质量有保障</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>🌟 愿您在重庆度过一段难忘的山城之旅！</p>
+            <p>📱 本行程由高德地图API智能规划生成</p>
+            
+            <!-- 保存为图片按钮 -->
+            <div style="margin-top: 25px; padding: 20px; background: rgba(255,255,255,0.2); border-radius: 10px;">
+                <h4 style="margin-bottom: 15px;">📸 保存行程规划</h4>
+                <button onclick="saveAsImage()" 
+                        style="background: linear-gradient(45deg, #667eea, #764ba2); 
+                               color: white; border: none; padding: 12px 25px; 
+                               border-radius: 25px; cursor: pointer; font-size: 16px; 
+                               margin-right: 15px; transition: all 0.3s ease;">
+                    📱 保存为图片
+                </button>
+                <button onclick="sharePage()" 
+                        style="background: linear-gradient(45deg, #ff7b7b, #ff9a56); 
+                               color: white; border: none; padding: 12px 25px; 
+                               border-radius: 25px; cursor: pointer; font-size: 16px;">
+                    📤 分享行程
+                </button>
+                <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">点击按钮保存完整行程规划图片，方便分享给朋友</p>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.2); border-radius: 10px;">
+                <h4 style="margin-bottom: 10px;">🗺️ 高德地图行程规划</h4>
+                <p style="margin-bottom: 10px;">点击下方链接在高德地图中查看完整行程规划：</p>
+                <a href="amapuri://workInAmap/createWithToken?polymericId=mcp_c8abfb96b69a4c36b1f76da98dcb8824&from=MCP" 
+                   style="color: #fff; text-decoration: underline; font-weight: bold; background: rgba(255,255,255,0.3); padding: 8px 15px; border-radius: 5px; display: inline-block;">
+                   📱 在高德地图中打开行程规划
+                </a>
+                <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">* 需要安装高德地图APP才能打开</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 高德地图导航功能
+    function openNavigation(lon, lat, name) {
+        // 尝试打开高德地图APP
+        const amapUrl = `amapuri://openFeature?featureName=OpenNaviNavi&sourceApplication=重庆旅游&poiname=${encodeURIComponent(name)}&lat=${lat}&lon=${lon}&dev=0`;
+        
+        // 创建一个临时链接来尝试打开APP
+        const link = document.createElement('a');
+        link.href = amapUrl;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // 如果无法打开APP，则打开高德地图网页版
+        setTimeout(() => {
+            const webUrl = `https://uri.amap.com/navigation?to=${lon},${lat},${encodeURIComponent(name)}&mode=car&src=重庆旅游规划`;
+            window.open(webUrl, '_blank');
+        }, 2000);
+        
+        // 显示提示信息
+        alert(`📍 正在打开高德地图导航到：${name}\n如果未自动跳转，请手动点击确定后跳转到网页版地图`);
+    }
+
+    // 保存为图片功能
+    function saveAsImage() {
+        // 显示加载提示
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'screenshot-loading'; // 添加class用于排除
+        loadingDiv.innerHTML = `
+            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                        background: rgba(0,0,0,0.8); z-index: 9999; display: flex; 
+                        align-items: center; justify-content: center; color: white; font-size: 18px;">
+                <div style="text-align: center;">
+                    <div style="margin-bottom: 20px;">📸 正在生成图片...</div>
+                    <div style="font-size: 14px; opacity: 0.8;">请稍候，正在处理页面内容</div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(loadingDiv);
+
+        // 短暂延迟后开始截图，确保加载提示显示
+        setTimeout(() => {
+            // 使用html2canvas生成图片，排除加载提示元素
+            html2canvas(document.body, {
+                allowTaint: true,
+                useCORS: true,
+                scrollX: 0,
+                scrollY: 0,
+                width: window.innerWidth,
+                height: document.body.scrollHeight,
+                scale: 2, // 提高图片质量
+                ignoreElements: function(element) {
+                    // 排除加载提示元素
+                    return element.classList && element.classList.contains('screenshot-loading');
+                }
+            }).then(function(canvas) {
+                // 移除加载提示
+                document.body.removeChild(loadingDiv);
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '重庆三日游行程规划.png';
+                link.href = canvas.toDataURL('image/png');
+                
+                // 触发下载
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // 显示成功提示
+                alert('📸 图片保存成功！\n已下载到您的设备中，文件名：重庆三日游行程规划.png');
+            }).catch(function(error) {
+                // 移除加载提示
+                if (document.body.contains(loadingDiv)) {
+                    document.body.removeChild(loadingDiv);
+                }
+                console.error('生成图片失败:', error);
+                alert('❌ 生成图片失败，请稍后重试');
+            });
+        }, 100); // 100ms延迟确保加载提示正确显示
+    }
+
+    // 分享功能
+    function sharePage() {
+        if (navigator.share) {
+            // 如果支持Web Share API
+            navigator.share({
+                title: '重庆三日游行程规划',
+                text: '深圳到重庆的精品三日游行程，包含洪崖洞、解放碑、磁器口等热门景点！',
+                url: window.location.href
+            }).then(() => {
+                console.log('分享成功');
+            }).catch((err) => {
+                console.log('分享取消', err);
+                copyToClipboard();
+            });
+        } else {
+            // 备选方案：复制链接到剪贴板
+            copyToClipboard();
+        }
+    }
+
+    // 复制链接到剪贴板
+    function copyToClipboard() {
+        const textArea = document.createElement('textarea');
+        textArea.value = `重庆三日游行程规划 - ${window.location.href}`;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            alert('📋 链接已复制到剪贴板！\n可以分享给朋友查看行程规划');
+        } catch (err) {
+            alert('❌ 复制失败，请手动复制链接分享');
+        }
+        document.body.removeChild(textArea);
+    }
+
+    // 按钮悬停效果
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('button[onclick]');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    });
+</script>
+</html> 

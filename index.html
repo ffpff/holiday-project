@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能旅游行程规划平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><polygon points="0,0 0,100 1000,80 1000,0"/></svg>');
+            z-index: -1;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.4em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .nav-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-card:hover::before {
+            left: 100%;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-card.available {
+            border: 3px solid #667eea;
+        }
+
+        .nav-card.available:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .detail-icon {
+            font-size: 1.2em;
+        }
+
+        .card-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-available {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .features {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .features h2 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            background: #f8f9ff;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .footer p {
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .header p {
+                font-size: 1.2em;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .nav-card {
+                padding: 30px 20px;
+            }
+
+            .card-details {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 智能旅游行程规划平台</h1>
+            <p>基于高德地图API的精品旅游路线规划</p>
+            <p class="subtitle">探索中国美景，定制专属行程</p>
+        </div>
+
+        <div class="nav-grid">
+            <div class="nav-card available pulse" onclick="window.location.href='chongqing.html'">
+                <span class="card-icon">🏔️</span>
+                <h2 class="card-title">重庆三日游</h2>
+                <p class="card-description">深圳出发，探索山城魅力。包含洪崖洞、解放碑、磁器口古镇、长江索道等经典景点，体验正宗重庆火锅文化。</p>
+                <div class="card-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <span>2025年6月1-3日</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🚄</span>
+                        <span>深圳⇄重庆</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⭐</span>
+                        <span>经典景点游览</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🍲</span>
+                        <span>美食文化体验</span>
+                    </div>
+                </div>
+                <span class="card-status status-available">✅ 已完成规划</span>
+            </div>
+
+            <div class="nav-card available" onclick="window.location.href='chengdu.html'">
+                <span class="card-icon">🐼</span>
+                <h2 class="card-title">成都三日游</h2>
+                <p class="card-description">感受天府之国的悠闲生活。游览大熊猫基地、武侯祠、宽窄巷子、锦里古街，品尝地道川菜和火锅。</p>
+                <div class="card-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <span>2025年6月1-3日</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🚄</span>
+                        <span>深圳⇄成都</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🐼</span>
+                        <span>大熊猫基地</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌶️</span>
+                        <span>川菜美食之旅</span>
+                    </div>
+                </div>
+                <span class="card-status status-available">✅ 已完成规划</span>
+            </div>
+
+            <div class="nav-card available" onclick="window.location.href='dali.html'">
+                <span class="card-icon">🌸</span>
+                <h2 class="card-title">大理三日游</h2>
+                <p class="card-description">苍山洱海风花雪月。游览大理古城、崇圣寺三塔、喜洲古镇、双廊古镇，体验白族文化和洱海美景。</p>
+                <div class="card-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <span>2025年6月1-3日</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🚄</span>
+                        <span>深圳⇄大理</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⛰️</span>
+                        <span>苍山洱海</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🏛️</span>
+                        <span>白族文化体验</span>
+                    </div>
+                </div>
+                <span class="card-status status-available">✅ 已完成规划</span>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>🎯 平台特色功能</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🗺️</span>
+                    <h3 class="feature-title">智能路线规划</h3>
+                    <p class="feature-desc">基于高德地图API，提供最优交通路线和实时导航服务</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🌤️</span>
+                    <h3 class="feature-title">实时天气预报</h3>
+                    <p class="feature-desc">获取目的地准确天气信息，合理安排出行计划</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📍</span>
+                    <h3 class="feature-title">精选景点推荐</h3>
+                    <p class="feature-desc">筛选优质景点，提供详细信息和游览建议</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🍽️</span>
+                    <h3 class="feature-title">美食文化体验</h3>
+                    <p class="feature-desc">推荐地道特色美食，深度体验当地文化</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💡</span>
+                    <h3 class="feature-title">贴心旅行建议</h3>
+                    <p class="feature-desc">提供实用的出行提示和注意事项</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📱</span>
+                    <h3 class="feature-title">移动端适配</h3>
+                    <p class="feature-desc">响应式设计，支持手机、平板等多种设备</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-content">
+                <h3>🚀 技术驱动的智能旅游</h3>
+                <p>采用先进的地图API技术，为您提供最精准的旅游规划服务</p>
+                <p>让每一次旅行都成为难忘的回忆</p>
+                <div style="margin-top: 20px;">
+                    <span class="tech-badge">🗺️ 高德地图API</span>
+                    <span class="tech-badge">🌐 响应式Web设计</span>
+                    <span class="tech-badge">📱 移动端优化</span>
+                    <span class="tech-badge">☁️ 实时数据获取</span>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                    © 2024 智能旅游行程规划平台 | 让旅行更智能、更便捷
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 添加点击效果
+        document.querySelectorAll('.nav-card.available').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // 添加加载动画
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.nav-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+
+        // 添加点击反馈效果
+        document.querySelectorAll('.nav-card.available').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html> 

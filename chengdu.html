@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深圳到成都旅游行程规划 - 2025年6月1-3日</title>
+    <!-- 引入html2canvas库用于页面截图 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .travel-info {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .route-section {
+            margin-bottom: 30px;
+        }
+
+        .route-title {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .route-details {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .day-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .day-content {
+            padding: 25px;
+        }
+
+        .attraction {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .attraction-icon {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: #667eea;
+        }
+
+        .attraction-info h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+
+        .attraction-info p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .attraction-tags {
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 5px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #667eea;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .time {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .tips {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .tips h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tips h3::before {
+            content: "💡";
+            margin-right: 10px;
+        }
+
+        .tips ul {
+            padding-left: 20px;
+        }
+
+        .tips li {
+            margin-bottom: 8px;
+            color: #856404;
+        }
+
+        .weather {
+            background: #e7f3ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .weather h4 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .attraction {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .attraction-icon {
+                margin-bottom: 15px;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐼 深圳到成都旅游行程规划</h1>
+            <p>2025年6月1日 - 6月3日 · 三天两夜精品游</p>
+        </div>
+
+        <div class="travel-info">
+            <div class="route-section">
+                <h2 class="route-title">🚄 交通路线规划</h2>
+                <div class="route-details">
+                    <h3>推荐路线1：高铁快线 (推荐)</h3>
+                    <p><strong>深圳北站 → 成都东站</strong></p>
+                    <p>G2942次高铁，行程约9小时，票价二等座约515元</p>
+                    <p>建议提前1-2小时到达车站，注意携带身份证件</p>
+                </div>
+                <div class="route-details">
+                    <h3>路线2：普通列车</h3>
+                    <p><strong>深圳东站 → 成都西站</strong></p>
+                    <p>Z586次直达列车，行程约23小时，经济实惠</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第一天 -->
+        <div class="day-card">
+            <div class="day-header">
+                <h2>第一天：6月1日</h2>
+                <p>抵达成都 & 市区初探</p>
+            </div>
+            <div class="day-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">08:00 - 17:00</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🚄</div>
+                            <div class="attraction-info">
+                                <h3>深圳北站出发</h3>
+                                <p>搭乘G2942次高铁前往成都东站</p>
+                                <p>建议提前1小时到达车站办理登车手续</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">17:30 - 18:30</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🏨</div>
+                            <div class="attraction-info">
+                                <h3>抵达成都 & 酒店入住</h3>
+                                <p>从成都东站乘地铁7号线转18号线到市区</p>
+                                <p>建议选择春熙路或宽窄巷子附近的酒店</p>
+                                <div class="attraction-tags">
+                                    <span class="tag">交通便利</span>
+                                    <span class="tag">美食聚集</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">19:00 - 21:30</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🏮</div>
+                            <div class="attraction-info">
+                                <h3>锦里古街夜游</h3>
+                                <p>地址：<a href="javascript:void(0)" onclick="openNavigation('104.049828', '30.645994', '锦里古街')" style="color: #667eea; text-decoration: underline; cursor: pointer;">武侯祠大街231号附1号 📍导航</a></p>
+                                <p>体验成都传统文化，品尝地道小吃</p>
+                                <p>推荐美食：三大炮、糖油果子、钵钵鸡</p>
+                                <div class="attraction-tags">
+                                    <span class="tag">免费景点</span>
+                                    <span class="tag">24小时开放</span>
+                                    <span class="tag">美食天堂</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather">
+                    <h4>🌤️ 6月1日天气预报</h4>
+                    <p>成都6月气温宜人，约22-28℃，建议穿着轻便衣物，准备薄外套</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二天 -->
+        <div class="day-card">
+            <div class="day-header">
+                <h2>第二天：6月2日</h2>
+                <p>熊猫基地 & 古韵成都</p>
+            </div>
+            <div class="day-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">07:30 - 11:30</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🐼</div>
+                            <div class="attraction-info">
+                                <h3>成都大熊猫繁育研究基地</h3>
+                                <p>地址：<a href="javascript:void(0)" onclick="openNavigation('104.138176', '30.740573', '成都大熊猫繁育研究基地')" style="color: #667eea; text-decoration: underline; cursor: pointer;">熊猫大道1375号 📍导航</a></p>
+                                <p>门票：58元，开放时间：07:30-18:30</p>
+                                <p>观赏国宝大熊猫，最佳观看时间为上午9-11点</p>
+                                <p>建议游览路线：游客中心→幼年大熊猫别墅→成年大熊猫别墅→小熊猫活动区</p>
+                                <div class="attraction-tags">
+                                    <span class="tag">AAAA级景区</span>
+                                    <span class="tag">必游景点</span>
+                                    <span class="tag">亲子友好</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">12:00 - 13:30</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🍜</div>
+                            <div class="attraction-info">
+                                <h3>川菜午餐体验</h3>
+                                <p>推荐：陈麻婆豆腐、宫保鸡丁、回锅肉</p>
+                                <p>品尝正宗川菜，感受成都味道</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">14:30 - 17:00</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🏛️</div>
+                            <div class="attraction-info">
+                                <h3>武侯祠博物馆</h3>
+                                <p>地址：<a href="javascript:void(0)" onclick="openNavigation('104.049320', '30.644529', '武侯祠博物馆')" style="color: #667eea; text-decoration: underline; cursor: pointer;">武侯祠大街231号 📍导航</a></p>
+                                <p>门票：50元，中国唯一君臣合祀祠庙</p>
+                                <p>了解三国文化，缅怀诸葛亮丰功伟绩</p>
+                                <div class="attraction-tags">
+                                    <span class="tag">历史文化</span>
+                                    <span class="tag">三国文化</span>
+                                    <span class="tag">教育意义</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">18:00 - 21:00</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🎭</div>
+                            <div class="attraction-info">
+                                <h3>宽窄巷子文化体验</h3>
+                                <p>地址：<a href="javascript:void(0)" onclick="openNavigation('104.055180', '30.663213', '宽窄巷子')" style="color: #667eea; text-decoration: underline; cursor: pointer;">金河路口宽窄巷子 📍导航</a></p>
+                                <p>免费开放，24小时营业</p>
+                                <p>成都历史文化街区，体验老成都慢生活</p>
+                                <p>推荐：掏耳朵、盖碗茶、川剧变脸表演</p>
+                                <div class="attraction-tags">
+                                    <span class="tag">免费景点</span>
+                                    <span class="tag">文化体验</span>
+                                    <span class="tag">网红打卡</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三天 -->
+        <div class="day-card">
+            <div class="day-header">
+                <h2>第三天：6月3日</h2>
+                <p>现代成都 & 返程</p>
+            </div>
+            <div class="day-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">09:00 - 11:30</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🏛️</div>
+                            <div class="attraction-info">
+                                <h3>成都博物馆</h3>
+                                <p>地址：<a href="javascript:void(0)" onclick="openNavigation('104.063749', '30.657297', '成都博物馆')" style="color: #667eea; text-decoration: underline; cursor: pointer;">小河街1号 📍导航</a></p>
+                                <p>免费参观，了解成都历史文化发展</p>
+                                <p>现代化展馆设计，丰富的历史文物</p>
+                                <div class="attraction-tags">
+                                    <span class="tag">免费景点</span>
+                                    <span class="tag">现代化</span>
+                                    <span class="tag">教育价值</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">12:00 - 14:00</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🛍️</div>
+                            <div class="attraction-info">
+                                <h3>春熙路购物 & 午餐</h3>
+                                <p>成都最繁华商业街，购买伴手礼</p>
+                                <p>推荐：IFS国际金融中心、太古里</p>
+                                <p>美食推荐：龙抄手、赖汤圆、夫妻肺片</p>
+                                <div class="attraction-tags">
+                                    <span class="tag">购物天堂</span>
+                                    <span class="tag">美食聚集</span>
+                                    <span class="tag">现代都市</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">15:00 - 16:00</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">📦</div>
+                            <div class="attraction-info">
+                                <h3>整理行李 & 退房</h3>
+                                <p>收拾行李，酒店退房</p>
+                                <p>可将行李寄存在酒店前台</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">17:00 onwards</div>
+                        <div class="attraction">
+                            <div class="attraction-icon">🚄</div>
+                            <div class="attraction-info">
+                                <h3>前往车站返程</h3>
+                                <p>建议提前2小时前往成都东站</p>
+                                <p>乘坐地铁7号线直达成都东客站</p>
+                                <p>结束愉快的成都之旅</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips">
+            <h3>旅游贴士</h3>
+            <ul>
+                <li><strong>交通：</strong>建议办理天府通卡，方便乘坐地铁和公交</li>
+                <li><strong>美食：</strong>成都人爱吃辣，不吃辣的游客要提前说明</li>
+                <li><strong>气候：</strong>6月成都气候宜人，但要注意防晒和准备雨具</li>
+                <li><strong>文化：</strong>成都人生活节奏较慢，享受慢生活文化</li>
+                <li><strong>购物：</strong>推荐购买：郫县豆瓣、火锅底料、蜀锦制品</li>
+                <li><strong>安全：</strong>保管好个人财物，注意饮食卫生</li>
+                <li><strong>预算：</strong>预计人均消费1500-2500元（不含交通费）</li>
+            </ul>
+        </div>
+
+        <div class="travel-info" style="margin-top: 30px; text-align: center;">
+            <h3 style="color: #667eea; margin-bottom: 15px;">🎯 行程亮点</h3>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="margin: 10px;">
+                    <div style="font-size: 2rem;">🐼</div>
+                    <p>近距离观赏国宝大熊猫</p>
+                </div>
+                <div style="margin: 10px;">
+                    <div style="font-size: 2rem;">🏮</div>
+                    <p>体验传统巴蜀文化</p>
+                </div>
+                <div style="margin: 10px;">
+                    <div style="font-size: 2rem;">🌶️</div>
+                    <p>品尝正宗川菜美食</p>
+                </div>
+                <div style="margin: 10px;">
+                    <div style="font-size: 2rem;">🎭</div>
+                    <p>感受成都慢生活节奏</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 保存为图片按钮 -->
+        <div class="travel-info" style="margin-top: 30px; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <h3 style="color: white; margin-bottom: 15px;">📸 保存行程规划</h3>
+            <button onclick="saveAsImage()" 
+                    style="background: rgba(255,255,255,0.2); 
+                           color: white; border: 2px solid white; padding: 12px 25px; 
+                           border-radius: 25px; cursor: pointer; font-size: 16px; 
+                           margin-right: 15px; transition: all 0.3s ease;">
+                📱 保存为图片
+            </button>
+            <button onclick="sharePage()" 
+                    style="background: rgba(255,255,255,0.2); 
+                           color: white; border: 2px solid white; padding: 12px 25px; 
+                           border-radius: 25px; cursor: pointer; font-size: 16px;">
+                📤 分享行程
+            </button>
+            <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">点击按钮保存完整成都行程规划图片，方便分享给朋友</p>
+        </div>
+    </div>
+
+    <script>
+        // 高德地图导航功能
+        function openNavigation(lon, lat, name) {
+            // 尝试打开高德地图APP
+            const amapUrl = `amapuri://openFeature?featureName=OpenNaviNavi&sourceApplication=成都旅游&poiname=${encodeURIComponent(name)}&lat=${lat}&lon=${lon}&dev=0`;
+            
+            // 创建一个临时链接来尝试打开APP
+            const link = document.createElement('a');
+            link.href = amapUrl;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // 如果无法打开APP，则打开高德地图网页版
+            setTimeout(() => {
+                const webUrl = `https://uri.amap.com/navigation?to=${lon},${lat},${encodeURIComponent(name)}&mode=car&src=成都旅游规划`;
+                window.open(webUrl, '_blank');
+            }, 2000);
+            
+            // 显示提示信息
+            alert(`📍 正在打开高德地图导航到：${name}\n如果未自动跳转，请手动点击确定后跳转到网页版地图`);
+        }
+
+        // 保存为图片功能
+        function saveAsImage() {
+            // 显示加载提示
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'screenshot-loading'; // 添加class用于排除
+            loadingDiv.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                            background: rgba(0,0,0,0.8); z-index: 9999; display: flex; 
+                            align-items: center; justify-content: center; color: white; font-size: 18px;">
+                    <div style="text-align: center;">
+                        <div style="margin-bottom: 20px;">🐼 正在生成成都行程图片...</div>
+                        <div style="font-size: 14px; opacity: 0.8;">请稍候，正在处理页面内容</div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(loadingDiv);
+
+            // 短暂延迟后开始截图，确保加载提示显示
+            setTimeout(() => {
+                // 使用html2canvas生成图片，排除加载提示元素
+                html2canvas(document.body, {
+                    allowTaint: true,
+                    useCORS: true,
+                    scrollX: 0,
+                    scrollY: 0,
+                    width: window.innerWidth,
+                    height: document.body.scrollHeight,
+                    scale: 2, // 提高图片质量
+                    ignoreElements: function(element) {
+                        // 排除加载提示元素
+                        return element.classList && element.classList.contains('screenshot-loading');
+                    }
+                }).then(function(canvas) {
+                    // 移除加载提示
+                    document.body.removeChild(loadingDiv);
+                    
+                    // 创建下载链接
+                    const link = document.createElement('a');
+                    link.download = '成都三日游行程规划.png';
+                    link.href = canvas.toDataURL('image/png');
+                    
+                    // 触发下载
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // 显示成功提示
+                    alert('🐼 图片保存成功！\n已下载到您的设备中，文件名：成都三日游行程规划.png');
+                }).catch(function(error) {
+                    // 移除加载提示
+                    if (document.body.contains(loadingDiv)) {
+                        document.body.removeChild(loadingDiv);
+                    }
+                    console.error('生成图片失败:', error);
+                    alert('❌ 生成图片失败，请稍后重试');
+                });
+            }, 100); // 100ms延迟确保加载提示正确显示
+        }
+
+        // 分享功能
+        function sharePage() {
+            if (navigator.share) {
+                // 如果支持Web Share API
+                navigator.share({
+                    title: '成都三日游行程规划',
+                    text: '深圳到成都的精品三日游行程，包含大熊猫基地、武侯祠、宽窄巷子等热门景点！',
+                    url: window.location.href
+                }).then(() => {
+                    console.log('分享成功');
+                }).catch((err) => {
+                    console.log('分享取消', err);
+                    copyToClipboard();
+                });
+            } else {
+                // 备选方案：复制链接到剪贴板
+                copyToClipboard();
+            }
+        }
+
+        // 复制链接到剪贴板
+        function copyToClipboard() {
+            const textArea = document.createElement('textarea');
+            textArea.value = `成都三日游行程规划 - ${window.location.href}`;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert('📋 链接已复制到剪贴板！\n可以分享给朋友查看成都行程规划');
+            } catch (err) {
+                alert('❌ 复制失败，请手动复制链接分享');
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // 添加一些交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为景点卡片添加点击效果
+            const attractions = document.querySelectorAll('.attraction');
+            attractions.forEach(attraction => {
+                attraction.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+
+            // 滚动动画
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            const dayCards = document.querySelectorAll('.day-card');
+            dayCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html> 
