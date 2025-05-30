@@ -3,782 +3,890 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深圳到大理三日游 - 旅行规划表</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>深圳到大理三日游行程规划表</title>
+    
+    <!-- 引入外部资源 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
-        @media print {
-            @page {
-                size: A4;
-                margin: 10mm;
-            }
-            
-            .no-print {
-                display: none !important;
-            }
-            
-            * {
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-        }
-
+        /* 全局样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            line-height: 1.6;
             color: #333;
+            line-height: 1.4;
             background: #f8f9fa;
-            padding: 20px;
         }
-
+        
+        /* A4纸张尺寸 */
         .travel-plan {
             width: 210mm;
             min-height: 297mm;
-            background: white;
-            margin: 0 auto;
+            max-width: 210mm;
+            margin: 20px auto;
             padding: 10mm;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
             position: relative;
         }
-
+        
+        /* 保存按钮 */
         .save-image-button {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #007bff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             padding: 12px 20px;
-            border-radius: 8px;
+            border-radius: 25px;
             cursor: pointer;
             font-size: 14px;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
             transition: all 0.3s ease;
+            z-index: 1000;
         }
-
+        
         .save-image-button:hover {
-            background: #0056b3;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
-
+        
+        .save-image-button i {
+            margin-right: 8px;
+        }
+        
+        /* 标题区域 */
         .header {
             text-align: center;
             margin-bottom: 20px;
-            border-bottom: 3px solid #007bff;
+            border-bottom: 2px solid #667eea;
             padding-bottom: 15px;
         }
-
+        
         .main-title {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            color: #7f8c8d;
-            margin-bottom: 15px;
-        }
-
-        .travel-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .info-card {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid #e9ecef;
-        }
-
-        .info-card .icon {
-            font-size: 24px;
-            color: #007bff;
+            color: #667eea;
             margin-bottom: 8px;
         }
-
-        .info-card .title {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #495057;
-        }
-
-        .info-card .content {
+        
+        .sub-title {
             font-size: 14px;
-            color: #6c757d;
+            color: #666;
+            margin-bottom: 5px;
         }
-
-        .section {
-            margin-bottom: 25px;
-        }
-
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 4px solid #007bff;
-        }
-
-        .itinerary-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .itinerary-table th,
-        .itinerary-table td {
-            border: 1px solid #dee2e6;
-            padding: 12px 8px;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        .itinerary-table th {
-            background: #f8f9fa;
-            font-weight: 600;
-            color: #495057;
-        }
-
-        .itinerary-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .location-link {
-            color: #007bff;
-            text-decoration: underline;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .location-link:hover {
-            color: #0056b3;
-            background: #e7f1ff;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-
-        .activity-icon {
-            margin-right: 5px;
-            color: #007bff;
-        }
-
-        .time-column {
-            width: 15%;
-            font-weight: 600;
-            background: #e3f2fd !important;
-        }
-
-        .activity-column {
-            width: 25%;
-        }
-
-        .location-column {
-            width: 35%;
-        }
-
-        .details-column {
-            width: 25%;
-        }
-
+        
         .weather-info {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
+            font-size: 12px;
+            color: #888;
+            background: #f0f7ff;
+            padding: 8px 12px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        
+        /* 行程概览 */
+        .overview {
             margin-bottom: 20px;
         }
-
-        .weather-grid {
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+            padding-left: 10px;
+        }
+        
+        .day-overview {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
-
-        .weather-day {
+        
+        .day-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 12px;
+            border-radius: 8px;
             text-align: center;
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
-            border-radius: 8px;
+            border: 1px solid #e0e0e0;
         }
-
-        .weather-day .date {
+        
+        .day-title {
             font-weight: 600;
+            color: #667eea;
             margin-bottom: 5px;
+            font-size: 14px;
         }
-
-        .weather-day .temp {
-            font-size: 18px;
-            font-weight: 700;
+        
+        .day-content {
+            font-size: 11px;
+            color: #555;
+            line-height: 1.3;
         }
-
-        .route-info {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 10px 0;
+        
+        /* 详细时间表 */
+        .schedule {
+            margin-bottom: 20px;
         }
-
-        .tips-section {
-            background: #d1ecf1;
-            border: 1px solid #bee5eb;
-            border-radius: 8px;
-            padding: 15px;
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 11px;
         }
-
-        .tips-list {
-            list-style: none;
-            padding-left: 0;
+        
+        .schedule-table th {
+            background: #667eea;
+            color: white;
+            padding: 8px 6px;
+            text-align: left;
+            font-weight: 500;
         }
-
-        .tips-list li {
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
+        
+        .schedule-table td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            vertical-align: top;
         }
-
-        .tips-list li:before {
-            content: "💡";
-            position: absolute;
-            left: 0;
+        
+        .schedule-table tr:nth-child(even) {
+            background: #f9f9f9;
         }
-
-        .contact-grid {
+        
+        .location-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #667eea;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .location-link:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        
+        .activity-icon {
+            margin-right: 4px;
+            color: #667eea;
+            font-size: 10px;
+        }
+        
+        /* 交通信息 */
+        .transport {
+            margin-bottom: 20px;
+        }
+        
+        .transport-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .transport-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .transport-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+        
+        .transport-content {
+            font-size: 10px;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        /* 住宿餐饮 */
+        .accommodation {
+            margin-bottom: 20px;
+        }
+        
+        .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
-
-        .contact-card {
+        
+        .info-item {
             background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #28a745;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
         }
-
-        .price-tag {
-            background: #ff6b6b;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 12px;
-            margin-left: 5px;
-        }
-
-        .day-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0 15px 0;
-            text-align: center;
+        
+        .info-title {
             font-weight: 600;
-            font-size: 18px;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 12px;
         }
-
-        @media screen and (max-width: 768px) {
+        
+        .info-content {
+            font-size: 10px;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        .info-content ul {
+            margin-left: 12px;
+        }
+        
+        .info-content li {
+            margin-bottom: 3px;
+        }
+        
+        /* 实用信息 */
+        .practical-info {
+            background: #f0f7ff;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #b3d9ff;
+        }
+        
+        .practical-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            font-size: 10px;
+        }
+        
+        .emergency-contacts {
+            background: #fff2cc;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ffd966;
+        }
+        
+        .tips {
+            background: #e8f5e8;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #93c47d;
+        }
+        
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .travel-plan {
+                box-shadow: none;
+                margin: 0;
+                border-radius: 0;
+                width: 100%;
+                max-width: none;
+            }
+            
+            .save-image-button {
+                display: none !important;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
             .travel-plan {
                 width: 100%;
-                margin: 0;
+                margin: 10px;
                 padding: 15px;
             }
             
-            .travel-info {
+            .day-overview {
                 grid-template-columns: 1fr;
             }
             
-            .weather-grid {
+            .transport-grid,
+            .info-grid {
                 grid-template-columns: 1fr;
             }
             
-            .contact-grid {
+            .practical-grid {
                 grid-template-columns: 1fr;
             }
+        }
+        
+        /* 加载提示样式 */
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            z-index: 9999;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .price-highlight {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        .time-highlight {
+            color: #f39c12;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
+    <!-- 保存为图片按钮 -->
     <button class="save-image-button no-print" onclick="saveAsImage()">
         <i class="fas fa-download"></i> 保存为图片
     </button>
 
     <div class="travel-plan">
-        <!-- 标题区 -->
+        <!-- 标题区域 -->
         <div class="header">
             <h1 class="main-title">深圳到大理三日游</h1>
-            <p class="subtitle">2025年6月1日 - 6月3日 • 苍山洱海之约</p>
-        </div>
-
-        <!-- 基本信息 -->
-        <div class="travel-info">
-            <div class="info-card">
-                <div class="icon"><i class="fas fa-calendar-alt"></i></div>
-                <div class="title">旅行时长</div>
-                <div class="content">3天2夜</div>
-            </div>
-            <div class="info-card">
-                <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-                <div class="title">目的地</div>
-                <div class="content">云南大理</div>
-            </div>
-            <div class="info-card">
-                <div class="icon"><i class="fas fa-users"></i></div>
-                <div class="title">适合人群</div>
-                <div class="content">情侣/朋友</div>
+            <div class="sub-title">旅行日期：2025年6月1日 - 6月3日（星期日至星期二）</div>
+            <div class="sub-title">总行程：3天2夜 | 旅行距离：约1,736公里</div>
+            <div class="weather-info">
+                <i class="fas fa-cloud-sun"></i> 大理天气：多云转小雨 17°C-26°C，北风1-3级
             </div>
         </div>
 
-        <!-- 天气信息 -->
-        <div class="weather-info">
-            <h3 style="text-align: center; margin-bottom: 15px;">
-                <i class="fas fa-cloud-sun"></i> 三日天气预报
-            </h3>
-            <div class="weather-grid">
-                <div class="weather-day">
-                    <div class="date">6月1日 (日)</div>
-                    <div class="temp">26°C / 17°C</div>
-                    <div>多云转小雨</div>
+        <!-- 行程概览 -->
+        <div class="overview">
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> 行程概览</h2>
+            <div class="day-overview">
+                <div class="day-card">
+                    <div class="day-title">第一天 6/1</div>
+                    <div class="day-content">
+                        深圳出发→大理机场<br>
+                        入住酒店→大理古城<br>
+                        洋人街→晚餐
+                    </div>
                 </div>
-                <div class="weather-day">
-                    <div class="date">6月2日 (一)</div>
-                    <div class="temp">22°C / 14°C</div>
-                    <div>小雨</div>
+                <div class="day-card">
+                    <div class="day-title">第二天 6/2</div>
+                    <div class="day-content">
+                        崇圣寺三塔→午餐<br>
+                        洱海游船→双廊古镇<br>
+                        环海拍照→返回古城
+                    </div>
                 </div>
-                <div class="weather-day">
-                    <div class="date">6月3日 (二)</div>
-                    <div class="temp">24°C / 17°C</div>
-                    <div>阴转阵雨</div>
+                <div class="day-card">
+                    <div class="day-title">第三天 6/3</div>
+                    <div class="day-content">
+                        苍山索道→山顶游览<br>
+                        特色午餐→购物<br>
+                        大理机场→返回深圳
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Day 1 -->
-        <div class="day-header">
-            <i class="fas fa-plane"></i> Day 1 - 深圳到大理 (6月1日)
-        </div>
-        
-        <table class="itinerary-table">
-            <thead>
-                <tr>
-                    <th class="time-column">时间</th>
-                    <th class="activity-column">活动</th>
-                    <th class="location-column">地点</th>
-                    <th class="details-column">详情</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>07:00-10:30</td>
-                    <td><i class="fas fa-plane activity-icon"></i>航班</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.320952, 25.646965, '大理凤仪机场')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>深圳→大理机场
-                        </a>
-                    </td>
-                    <td>建议航班：深圳宝安机场出发<span class="price-tag">¥800-1200</span></td>
-                </tr>
-                <tr>
-                    <td>11:00-12:30</td>
-                    <td><i class="fas fa-car activity-icon"></i>交通+入住</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.164000, 25.694836, '大理古城')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>大理古城
-                        </a>
-                    </td>
-                    <td>机场大巴或出租车前往古城，办理入住</td>
-                </tr>
-                <tr>
-                    <td>13:00-14:30</td>
-                    <td><i class="fas fa-utensils activity-icon"></i>午餐</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.164000, 25.694836, '大理古城美食街')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>古城内特色餐厅
-                        </a>
-                    </td>
-                    <td>品尝白族三道茶、乳扇等特色美食<span class="price-tag">¥80-120</span></td>
-                </tr>
-                <tr>
-                    <td>15:00-18:00</td>
-                    <td><i class="fas fa-camera activity-icon"></i>游览</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.164000, 25.694836, '大理古城')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>大理古城
-                        </a>
-                    </td>
-                    <td>漫步古城，参观五华楼、人民路步行街<span class="price-tag">免费</span></td>
-                </tr>
-                <tr>
-                    <td>19:00-21:00</td>
-                    <td><i class="fas fa-utensils activity-icon"></i>晚餐</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.164000, 25.694836, '人民路')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>人民路酒吧街
-                        </a>
-                    </td>
-                    <td>体验古城夜生活，品尝当地小吃<span class="price-tag">¥100-150</span></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Day 2 -->
-        <div class="day-header">
-            <i class="fas fa-mountain"></i> Day 2 - 苍山洱海一日游 (6月2日)
-        </div>
-        
-        <table class="itinerary-table">
-            <thead>
-                <tr>
-                    <th class="time-column">时间</th>
-                    <th class="activity-column">活动</th>
-                    <th class="location-column">地点</th>
-                    <th class="details-column">详情</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>08:00-09:00</td>
-                    <td><i class="fas fa-utensils activity-icon"></i>早餐</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.164000, 25.694836, '大理古城')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>古城内
-                        </a>
-                    </td>
-                    <td>传统白族早餐：饵丝、豆浆油条<span class="price-tag">¥20-30</span></td>
-                </tr>
-                <tr>
-                    <td>09:30-12:00</td>
-                    <td><i class="fas fa-pagelines activity-icon"></i>参观</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.143044, 25.704129, '崇圣寺三塔')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>崇圣寺三塔
-                        </a>
-                    </td>
-                    <td>大理标志性景点，佛教文化圣地<span class="price-tag">¥120</span></td>
-                </tr>
-                <tr>
-                    <td>13:00-14:30</td>
-                    <td><i class="fas fa-utensils activity-icon"></i>午餐</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.266116, 25.643582, '洱海边餐厅')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>洱海边餐厅
-                        </a>
-                    </td>
-                    <td>品尝洱海鱼、白族风味菜<span class="price-tag">¥120-180</span></td>
-                </tr>
-                <tr>
-                    <td>15:00-18:00</td>
-                    <td><i class="fas fa-water activity-icon"></i>游览</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.266116, 25.643582, '洱海')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>洱海环湖游
-                        </a>
-                    </td>
-                    <td>租电动车环湖，欣赏苍山洱海美景<span class="price-tag">¥60-80</span></td>
-                </tr>
-                <tr>
-                    <td>18:30-20:00</td>
-                    <td><i class="fas fa-camera activity-icon"></i>观景</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.266116, 25.643582, '洱海')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>洱海日落点
-                        </a>
-                    </td>
-                    <td>观赏洱海日落，拍摄美景<span class="price-tag">免费</span></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Day 3 -->
-        <div class="day-header">
-            <i class="fas fa-home"></i> Day 3 - 喜洲古镇及返程 (6月3日)
-        </div>
-        
-        <table class="itinerary-table">
-            <thead>
-                <tr>
-                    <th class="time-column">时间</th>
-                    <th class="activity-column">活动</th>
-                    <th class="location-column">地点</th>
-                    <th class="details-column">详情</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>08:00-09:00</td>
-                    <td><i class="fas fa-utensils activity-icon"></i>早餐</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.164000, 25.694836, '大理古城')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>酒店早餐
-                        </a>
-                    </td>
-                    <td>退房，寄存行李<span class="price-tag">含在住宿</span></td>
-                </tr>
-                <tr>
-                    <td>09:30-12:00</td>
-                    <td><i class="fas fa-building activity-icon"></i>游览</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.131582, 25.852950, '喜洲古镇')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>喜洲古镇
-                        </a>
-                    </td>
-                    <td>白族民居建筑，品尝喜洲粑粑<span class="price-tag">¥60-80</span></td>
-                </tr>
-                <tr>
-                    <td>12:30-13:30</td>
-                    <td><i class="fas fa-utensils activity-icon"></i>午餐</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.131582, 25.852950, '喜洲古镇')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>喜洲特色餐厅
-                        </a>
-                    </td>
-                    <td>白族特色菜：砂锅鱼、酸辣鱼<span class="price-tag">¥80-120</span></td>
-                </tr>
-                <tr>
-                    <td>14:00-15:30</td>
-                    <td><i class="fas fa-shopping-bag activity-icon"></i>购物</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.164000, 25.694836, '大理古城')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>古城购物街
-                        </a>
-                    </td>
-                    <td>购买纪念品：银饰、扎染布艺<span class="price-tag">¥100-300</span></td>
-                </tr>
-                <tr>
-                    <td>16:00-18:30</td>
-                    <td><i class="fas fa-plane activity-icon"></i>返程</td>
-                    <td>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.320952, 25.646965, '大理凤仪机场')" class="location-link">
-                            <i class="fas fa-map-marker-alt activity-icon"></i>大理机场→深圳
-                        </a>
-                    </td>
-                    <td>前往机场，返回深圳<span class="price-tag">¥800-1200</span></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- 交通信息 -->
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-route"></i> 交通信息</h2>
-            <div class="route-info">
-                <p><strong>深圳→大理：</strong>建议乘坐飞机，飞行时间约3.5小时，票价800-1200元</p>
-                <p><strong>大理机场→古城：</strong>机场大巴20元/人，约40分钟；出租车约80-100元</p>
-                <p><strong>市内交通：</strong>电动车租赁60-80元/天，出租车起步价8元</p>
-            </div>
-        </div>
-
-        <!-- 住宿推荐 -->
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-bed"></i> 住宿推荐</h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <h4>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.164000, 25.694836, '大理古城民宿')" class="location-link">
-                            大理古城精品民宿
-                        </a>
-                    </h4>
-                    <p>地址：古城内人民路附近</p>
-                    <p>价格：280-480元/晚</p>
-                    <p>特色：白族建筑风格，庭院景观</p>
-                </div>
-                <div class="contact-card">
-                    <h4>
-                        <a href="javascript:void(0)" onclick="navigateToLocation(100.266116, 25.643582, '洱海边酒店')" class="location-link">
-                            洱海边度假酒店
-                        </a>
-                    </h4>
-                    <p>地址：洱海环湖路</p>
-                    <p>价格：500-800元/晚</p>
-                    <p>特色：海景房，无边泳池</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 实用贴士 -->
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-lightbulb"></i> 实用贴士</h2>
-            <div class="tips-section">
-                <ul class="tips-list">
-                    <li>6月是大理雨季，请携带雨具和防晒用品</li>
-                    <li>大理海拔约2000米，注意防晒和保湿</li>
-                    <li>古城内多为石板路，建议穿舒适的平底鞋</li>
-                    <li>品尝当地美食时，注意肠胃适应</li>
-                    <li>洱海环保要求严格，请勿在湖边乱扔垃圾</li>
-                    <li>拍照时请尊重当地民族文化和习俗</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 紧急联系方式 -->
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-phone"></i> 紧急联系方式</h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <h4>紧急救援</h4>
-                    <p>报警电话：110</p>
-                    <p>急救电话：120</p>
-                    <p>消防电话：119</p>
-                </div>
-                <div class="contact-card">
-                    <h4>旅游服务</h4>
-                    <p>大理旅游咨询：0872-2329197</p>
-                    <p>交通问询：12306（火车）</p>
-                    <p>天气查询：12121</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 预算概览 -->
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-calculator"></i> 预算概览</h2>
-            <table class="itinerary-table">
+        <!-- 详细时间表 -->
+        <div class="schedule">
+            <h2 class="section-title"><i class="fas fa-clock"></i> 详细行程安排</h2>
+            
+            <!-- 第一天 -->
+            <h3 style="color: #667eea; font-size: 14px; margin: 10px 0 8px 0;">第一天 2025年6月1日（星期日）</h3>
+            <table class="schedule-table">
                 <thead>
                     <tr>
-                        <th>项目</th>
-                        <th>费用</th>
-                        <th>备注</th>
+                        <th style="width: 15%;">时间</th>
+                        <th style="width: 25%;">活动</th>
+                        <th style="width: 35%;">地点</th>
+                        <th style="width: 25%;">备注</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>往返机票</td>
-                        <td>1600-2400元</td>
-                        <td>提前预订可优惠</td>
+                        <td class="time-highlight">07:30-11:30</td>
+                        <td><i class="fas fa-plane activity-icon"></i>航班出行</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(22.543527, 114.057939, '深圳宝安国际机场')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>深圳宝安机场
+                            </a> → 
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.678466, 100.301614, '大理凤仪机场')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>大理凤仪机场
+                            </a>
+                        </td>
+                        <td>建议航班：<span class="price-highlight">约600-800元</span><br>提前2小时到机场</td>
                     </tr>
                     <tr>
-                        <td>住宿费用</td>
-                        <td>560-1600元</td>
-                        <td>2晚住宿</td>
+                        <td class="time-highlight">12:00-13:30</td>
+                        <td><i class="fas fa-car activity-icon"></i>机场接送</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '大理古城')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>前往大理古城
+                            </a>
+                        </td>
+                        <td>机场大巴或出租车<br><span class="price-highlight">约50-80元</span></td>
                     </tr>
                     <tr>
-                        <td>餐饮费用</td>
-                        <td>600-900元</td>
-                        <td>3天餐费</td>
+                        <td class="time-highlight">14:00-15:00</td>
+                        <td><i class="fas fa-bed activity-icon"></i>办理入住</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '大理古城酒店')" class="location-link">
+                                <i class="fas fa-home activity-icon"></i>大理古城内客栈
+                            </a>
+                        </td>
+                        <td>休息调整<br><span class="price-highlight">150-300元/晚</span></td>
                     </tr>
                     <tr>
-                        <td>景点门票</td>
-                        <td>180-250元</td>
-                        <td>主要景点</td>
+                        <td class="time-highlight">15:30-18:00</td>
+                        <td><i class="fas fa-camera activity-icon"></i>古城游览</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '大理古城')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>大理古城步行街
+                            </a>
+                        </td>
+                        <td>免费游览<br>拍照打卡、购买特产</td>
                     </tr>
                     <tr>
-                        <td>交通费用</td>
-                        <td>200-300元</td>
-                        <td>市内交通</td>
-                    </tr>
-                    <tr style="background: #e8f5e8; font-weight: bold;">
-                        <td>总计</td>
-                        <td>3140-5450元</td>
-                        <td>人均预算</td>
+                        <td class="time-highlight">18:30-20:00</td>
+                        <td><i class="fas fa-utensils activity-icon"></i>特色晚餐</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '洋人街餐厅')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>洋人街美食
+                            </a>
+                        </td>
+                        <td>白族三道茶、过桥米线<br><span class="price-highlight">80-120元/人</span></td>
                     </tr>
                 </tbody>
             </table>
+
+            <!-- 第二天 -->
+            <h3 style="color: #667eea; font-size: 14px; margin: 15px 0 8px 0;">第二天 2025年6月2日（星期一）</h3>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">时间</th>
+                        <th style="width: 25%;">活动</th>
+                        <th style="width: 35%;">地点</th>
+                        <th style="width: 25%;">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time-highlight">08:00-10:00</td>
+                        <td><i class="fas fa-temple activity-icon"></i>参观三塔</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.704129, 100.143044, '崇圣寺三塔')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>崇圣寺三塔文化旅游区
+                            </a>
+                        </td>
+                        <td>门票：<span class="price-highlight">75元/人</span><br>佛教文化、古建筑</td>
+                    </tr>
+                    <tr>
+                        <td class="time-highlight">10:30-12:00</td>
+                        <td><i class="fas fa-water activity-icon"></i>洱海游船</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.643582, 100.266116, '洱海码头')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>洱海游船码头
+                            </a>
+                        </td>
+                        <td>游船票：<span class="price-highlight">120元/人</span><br>洱海美景、南诏风情岛</td>
+                    </tr>
+                    <tr>
+                        <td class="time-highlight">12:30-14:00</td>
+                        <td><i class="fas fa-fish activity-icon"></i>湖鲜午餐</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.908323, 100.194322, '双廊餐厅')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>双廊古镇餐厅
+                            </a>
+                        </td>
+                        <td>洱海鱼、白族菜<br><span class="price-highlight">100-150元/人</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time-highlight">14:30-17:00</td>
+                        <td><i class="fas fa-camera activity-icon"></i>双廊游览</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.908323, 100.194322, '双廊古镇')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>双廊古镇景区
+                            </a>
+                        </td>
+                        <td>免费游览<br>渔村风情、洱海美景</td>
+                    </tr>
+                    <tr>
+                        <td class="time-highlight">17:30-19:00</td>
+                        <td><i class="fas fa-car activity-icon"></i>环海返程</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '大理古城')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>返回大理古城
+                            </a>
+                        </td>
+                        <td>包车环海<br><span class="price-highlight">200-300元/天</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 第三天 -->
+            <h3 style="color: #667eea; font-size: 14px; margin: 15px 0 8px 0;">第三天 2025年6月3日（星期二）</h3>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">时间</th>
+                        <th style="width: 25%;">活动</th>
+                        <th style="width: 35%;">地点</th>
+                        <th style="width: 25%;">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time-highlight">08:30-11:30</td>
+                        <td><i class="fas fa-mountain activity-icon"></i>苍山索道</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.704129, 100.143044, '苍山索道')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>苍山洗马潭索道
+                            </a>
+                        </td>
+                        <td>索道票：<span class="price-highlight">280元/人</span><br>高山湖泊、雪山美景</td>
+                    </tr>
+                    <tr>
+                        <td class="time-highlight">12:00-13:30</td>
+                        <td><i class="fas fa-utensils activity-icon"></i>特色午餐</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '古城餐厅')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>古城特色餐厅
+                            </a>
+                        </td>
+                        <td>白族土八碗<br><span class="price-highlight">90-130元/人</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time-highlight">14:00-15:30</td>
+                        <td><i class="fas fa-shopping-bag activity-icon"></i>购物特产</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '大理古城')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>古城商业街
+                            </a>
+                        </td>
+                        <td>普洱茶、银饰、扎染<br>根据个人预算</td>
+                    </tr>
+                    <tr>
+                        <td class="time-highlight">16:00-17:00</td>
+                        <td><i class="fas fa-car activity-icon"></i>前往机场</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(25.678466, 100.301614, '大理凤仪机场')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>大理凤仪机场
+                            </a>
+                        </td>
+                        <td>提前2小时到机场<br><span class="price-highlight">50-80元</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time-highlight">18:30-22:30</td>
+                        <td><i class="fas fa-plane activity-icon"></i>返程航班</td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="navigateToLocation(22.543527, 114.057939, '深圳宝安国际机场')" class="location-link">
+                                <i class="fas fa-map-marker-alt activity-icon"></i>深圳宝安机场
+                            </a>
+                        </td>
+                        <td>安全到达深圳<br>结束愉快旅程</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 交通信息 -->
+        <div class="transport">
+            <h2 class="section-title"><i class="fas fa-route"></i> 交通信息</h2>
+            <div class="transport-grid">
+                <div class="transport-item">
+                    <div class="transport-title"><i class="fas fa-plane"></i> 航班信息</div>
+                    <div class="transport-content">
+                        <strong>去程：</strong>深圳→大理<br>
+                        推荐航班：深航ZH9463（07:30-11:30）<br>
+                        票价：约600-800元<br><br>
+                        <strong>返程：</strong>大理→深圳<br>
+                        推荐航班：深航ZH9464（18:30-22:30）<br>
+                        票价：约600-800元
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-title"><i class="fas fa-car"></i> 当地交通</div>
+                    <div class="transport-content">
+                        <strong>机场往返：</strong>机场大巴30元/人<br>
+                        出租车约50-80元<br><br>
+                        <strong>市内交通：</strong>古城步行为主<br>
+                        公交2元/人，出租车起步8元<br><br>
+                        <strong>环海交通：</strong>包车200-300元/天<br>
+                        电瓶车60元/人
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 住宿与餐饮 -->
+        <div class="accommodation">
+            <h2 class="section-title"><i class="fas fa-utensils"></i> 住宿与餐饮</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-title"><i class="fas fa-bed"></i> 推荐住宿</div>
+                    <div class="info-content">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '大理古城民宿')" class="location-link">
+                                    <strong>大理古城特色客栈</strong>
+                                </a><br>
+                                位置：古城核心区域<br>
+                                价格：150-300元/晚<br>
+                                特色：白族建筑风格
+                            </li>
+                            <li style="margin-top: 8px;">
+                                <a href="javascript:void(0)" onclick="navigateToLocation(25.643582, 100.266116, '洱海海景酒店')" class="location-link">
+                                    <strong>洱海海景度假酒店</strong>
+                                </a><br>
+                                位置：洱海边<br>
+                                价格：400-800元/晚<br>
+                                特色：海景房、设施完善
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-title"><i class="fas fa-utensils"></i> 特色美食</div>
+                    <div class="info-content">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '白族三道茶')" class="location-link">
+                                    <strong>白族三道茶</strong>
+                                </a>：苦茶、甜茶、回味茶
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '过桥米线')" class="location-link">
+                                    <strong>大理过桥米线</strong>
+                                </a>：地道云南风味
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="navigateToLocation(25.643582, 100.266116, '洱海鱼')" class="location-link">
+                                    <strong>洱海湖鲜</strong>
+                                </a>：酸辣鱼、油炸小鱼
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="navigateToLocation(25.694836, 100.164000, '白族土八碗')" class="location-link">
+                                    <strong>白族土八碗</strong>
+                                </a>：传统宴席菜
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 实用信息 -->
+        <div class="practical-info">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> 实用信息</h2>
+            <div class="practical-grid">
+                <div class="emergency-contacts">
+                    <strong><i class="fas fa-phone"></i> 紧急联系</strong><br>
+                    旅游咨询：0872-12301<br>
+                    紧急救助：110/120/119<br>
+                    大理旅游投诉：0872-2316756<br>
+                    天气预报：12121
+                </div>
+                <div class="tips">
+                    <strong><i class="fas fa-lightbulb"></i> 重要提示</strong><br>
+                    • 6月大理多雨，携带雨具<br>
+                    • 高原地区注意防晒<br>
+                    • 洱海保护区，禁止乱丢垃圾<br>
+                    • 苍山温差大，备好外套
+                </div>
+                <div style="background: #e3f2fd; padding: 8px; border-radius: 4px; border: 1px solid #90caf9;">
+                    <strong><i class="fas fa-wallet"></i> 预算参考</strong><br>
+                    机票：1200-1600元<br>
+                    住宿：300-600元（2晚）<br>
+                    门票：475元/人<br>
+                    餐饮：500-800元<br>
+                    交通：300-400元<br>
+                    <strong>总计：约2775-3875元/人</strong>
+                </div>
+                <div style="background: #fff3e0; padding: 8px; border-radius: 4px; border: 1px solid #ffb74d;">
+                    <strong><i class="fas fa-suitcase"></i> 行李清单</strong><br>
+                    • 身份证、现金、银行卡<br>
+                    • 防晒霜、太阳镜、帽子<br>
+                    • 雨伞、外套、舒适鞋子<br>
+                    • 相机、充电宝、常用药品
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         // 保存为图片功能
         function saveAsImage() {
+            // 创建加载提示
             const loadingDiv = document.createElement('div');
-            loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 正在生成图片...';
-            loadingDiv.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: rgba(0,0,0,0.8);
-                color: white;
-                padding: 20px 30px;
-                border-radius: 10px;
-                z-index: 9999;
-                font-size: 16px;
-                text-align: center;
-            `;
+            loadingDiv.className = 'loading';
+            loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i><br>正在生成高清图片...';
             document.body.appendChild(loadingDiv);
             
+            // 隐藏不需要的元素
+            const norintElements = document.querySelectorAll('.no-print');
+            norintElements.forEach(el => el.style.display = 'none');
+            
+            // 使用html2canvas生成图片
             html2canvas(document.querySelector('.travel-plan'), {
-                scale: 2,
+                scale: 3, // 高分辨率
                 format: 'png',
                 backgroundColor: 'white',
                 useCORS: true,
+                allowTaint: true,
                 logging: false,
-                allowTaint: true
+                width: 794, // A4宽度像素
+                height: 1123 // A4高度像素
             }).then(canvas => {
+                // 创建下载链接
                 const link = document.createElement('a');
-                link.download = '深圳到大理三日游_2025年6月.png';
-                link.href = canvas.toDataURL('image/png');
+                link.download = '深圳到大理三日游行程规划表_2025年6月.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                
+                // 触发下载
+                document.body.appendChild(link);
                 link.click();
+                document.body.removeChild(link);
+                
+                // 移除加载提示
                 document.body.removeChild(loadingDiv);
                 
+                // 恢复隐藏的元素
+                norintElements.forEach(el => el.style.display = '');
+                
                 // 显示成功提示
-                const successDiv = document.createElement('div');
-                successDiv.innerHTML = '<i class="fas fa-check-circle"></i> 图片已保存成功！';
-                successDiv.style.cssText = loadingDiv.style.cssText.replace('rgba(0,0,0,0.8)', 'rgba(40,167,69,0.9)');
-                document.body.appendChild(successDiv);
-                setTimeout(() => {
-                    document.body.removeChild(successDiv);
-                }, 2000);
+                showNotification('图片已成功保存到下载文件夹！', 'success');
+                
             }).catch(err => {
                 console.error('图片生成失败:', err);
                 document.body.removeChild(loadingDiv);
-                const errorDiv = document.createElement('div');
-                errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 图片生成失败，请重试';
-                errorDiv.style.cssText = loadingDiv.style.cssText.replace('rgba(0,0,0,0.8)', 'rgba(220,53,69,0.9)');
-                document.body.appendChild(errorDiv);
-                setTimeout(() => {
-                    document.body.removeChild(errorDiv);
-                }, 3000);
+                norintElements.forEach(el => el.style.display = '');
+                showNotification('图片生成失败，请重试', 'error');
             });
         }
 
         // 高德地图导航功能
         function navigateToLocation(lat, lon, name) {
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const amapUrl = `amapuri://openFeature?featureName=OnLocationDest&lat=${lat}&lon=${lon}&dev=0&style=2&name=${encodeURIComponent(name)}`;
             
             if (isMobile) {
-                // 移动端直接跳转高德地图
+                // 移动端直接调用高德地图APP
+                const amapUrl = `amapuri://openFeature?featureName=OnLocationDest&lat=${lat}&lon=${lon}&dev=0&style=2&name=${encodeURIComponent(name)}`;
                 window.location.href = amapUrl;
-                // 备用方案：如果高德地图未安装，跳转到网页版
+                
+                // 如果APP未安装，3秒后跳转到网页版
                 setTimeout(() => {
-                    const webUrl = `https://uri.amap.com/marker?position=${lon},${lat}&name=${encodeURIComponent(name)}&src=myapp&coordinate=gaode&callnative=1`;
+                    const webUrl = `https://uri.amap.com/marker?position=${lon},${lat}&name=${encodeURIComponent(name)}&src=旅行规划&coordinate=gaode&callnative=1`;
                     window.open(webUrl, '_blank');
-                }, 2000);
+                }, 3000);
             } else {
-                // PC端打开网页版高德地图
-                const webUrl = `https://uri.amap.com/marker?position=${lon},${lat}&name=${encodeURIComponent(name)}&src=myapp&coordinate=gaode&callnative=1`;
+                // PC端打开高德地图网页版
+                const webUrl = `https://uri.amap.com/marker?position=${lon},${lat}&name=${encodeURIComponent(name)}&src=旅行规划&coordinate=gaode&callnative=1`;
                 window.open(webUrl, '_blank');
             }
         }
 
-        // 添加页面加载完成后的优化
+        // 通知提示功能
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                font-size: 14px;
+                max-width: 300px;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            
+            // 添加动画样式
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(notification);
+            
+            // 3秒后自动消失
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.3s ease-out reverse';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // 页面加载完成后的初始化
         document.addEventListener('DOMContentLoaded', function() {
-            // 为所有导航链接添加悬停效果
-            const locationLinks = document.querySelectorAll('.location-link');
-            locationLinks.forEach(link => {
-                link.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
-                    this.style.transition = 'all 0.3s ease';
-                });
-                
-                link.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
+            // 添加平滑滚动效果
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 });
             });
+
+            // 显示欢迎提示
+            setTimeout(() => {
+                showNotification('点击地点名称可导航至高德地图！', 'info');
+            }, 1000);
+        });
+
+        // 打印功能
+        function printPlan() {
+            window.print();
+        }
+
+        // 键盘快捷键
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+S 保存图片
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveAsImage();
+            }
+            // Ctrl+P 打印
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                printPlan();
+            }
         });
     </script>
 </body>
